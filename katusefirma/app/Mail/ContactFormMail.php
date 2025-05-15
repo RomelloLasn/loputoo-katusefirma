@@ -18,8 +18,8 @@ class ContactFormMail extends Mailable
 
     public function build()
     {
-        return $this->subject('New Contact Form Submission')
-                    ->view('emails.contact') // Ensure this matches the file path
+        return $this->subject('Uus sõnum!')
+                    ->view('emails.contact') 
                     ->with('data', $this->data);
     }
 }

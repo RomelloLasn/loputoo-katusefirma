@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,41 +7,54 @@
     <title>Contact Us</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body class="bg-black text-white">
     <header class="bg-black py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
             <div class="flex items-center space-x-3">
-                <img src="{{ asset('images/logo.png') }}" alt="SAABTEHTUD OÜ" class="h-10 w-10">
+                <img src="{{ asset('images/Adobe Express - file.png') }}" alt="SAABTEHTUD OÜ" class="h-10 w-10">
                 <span class="text-xl font-bold">SaabTehtud OÜ</span>
             </div>
+            <button id="burger" class="md:hidden text-yellow-400 focus:outline-none" aria-label="Ava menüü">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
             <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="/" class="hover:text-yellow-400 transition duration-300">Home</a>
-                <a href="{{ route('services') }}" class="hover:text-yellow-400 transition duration-300">Services</a>
-                <a href="{{ route('contact') }}" class="hover:text-yellow-400 transition duration-300">Contact Us</a>
+                <a href="/" class="hover:text-yellow-400 transition duration-300">Avaleht</a>
+                <a href="{{ route('services') }}" class="hover:text-yellow-400 transition duration-300">Teenused</a>
+                <a href="{{ route('contact') }}" class="hover:text-yellow-400 transition duration-300">Kontakt</a>
             </nav>
-            <a href="{{ route('contact') }}" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-full transition duration-300">
-                Contact Us
+            <a href="{{ route('contact') }}" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-full transition duration-300 hidden md:inline-block">
+                Kontakt
             </a>
         </div>
+        <div id="mobileMenu" class="md:hidden hidden px-4 pt-2 pb-4 bg-black border-t border-gray-800">
+            <a href="/" class="block py-2 text-sm text-gray-200 hover:text-yellow-400">Avaleht</a>
+            <a href="{{ route('services') }}" class="block py-2 text-sm text-gray-200 hover:text-yellow-400">Teenused</a>
+            <a href="{{ route('contact') }}" class="block py-2 text-sm text-gray-200 hover:text-yellow-400">Kontakt</a>
+        </div>
     </header>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const burger = document.getElementById('burger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            burger.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
 
-   
     <main class="container mx-auto py-12 px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
             <div class="bg-gray-900 text-white shadow-md rounded-lg p-6">
-                <h2 class="text-3xl font-bold mb-4 text-yellow-400">Get in Touch with Us</h2>
+                <h2 class="text-3xl font-bold mb-4 text-yellow-400">Kirjuta meile!</h2>
                 <p class="text-gray-400 mb-6">
-                    Feel free to reach out to us for any inquiries or assistance. We're here to help!
+                    Võta meiega julgelt ühendust, kui sul on küsimusi või vajad abi. Oleme siin, et aidata!
                 </p>
                 <div class="space-y-4">
-                    <div class="flex items-center space-x-4">
-                        
-                        
-                    </div>
+                    <div class="flex items-center space-x-4"></div>
                     <div class="flex items-center space-x-4">
                         <div class="bg-yellow-400 p-3 rounded-full">
                             <i class="fas fa-phone-alt text-black"></i>
@@ -63,29 +77,27 @@
             </div>
 
             @if(session('success'))
-<div id="toast-success" class="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50">
-    Email saadetud!
-</div>
-<script>
-    
-    setTimeout(() => {
-        document.getElementById('toast-success').style.display = 'none';
-    }, 3000);
-</script>
-@endif
+            <div id="toast-success" class="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50">
+                Email saadetud!
+            </div>
+            <script>
+                setTimeout(() => {
+                    document.getElementById('toast-success').style.display = 'none';
+                }, 3000);
+            </script>
+            @endif
 
-@if(session('error'))
-<div id="toast-error" class="fixed top-5 right-5 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50">
-    Error
-</div>
-<script>
-    
-    setTimeout(() => {
-        document.getElementById('toast-error').style.display = 'none';
-    }, 3000);
-</script>
-@endif
-            
+            @if(session('error'))
+            <div id="toast-error" class="fixed top-5 right-5 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50">
+                Error
+            </div>
+            <script>
+                setTimeout(() => {
+                    document.getElementById('toast-error').style.display = 'none';
+                }, 3000);
+            </script>
+            @endif
+
             <div class="bg-gray-900 text-white shadow-md rounded-lg p-6">
                 <h2 class="text-3xl font-bold mb-4 text-yellow-400">Kirjuta meile!</h2>
                 <form action="{{ route('contact.submit') }}" method="POST">
@@ -109,50 +121,41 @@
             </div>
         </div>
 
-        
         <div class="mt-12">
             <h2 class="text-3xl font-bold mb-4 text-yellow-400 text-center">Meie asukoht</h2>
             <div id="map" class="w-full h-96 rounded-lg shadow-lg"></div>
         </div>
     </main>
 
-    
     <footer class="bg-black text-white py-12">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-2 md:px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
                 <div>
                     <h3 class="text-lg font-bold mb-4">Saabtehtud OÜ</h3>
                     <p class="text-sm text-gray-400">Registrikood: 16572649</p>
                     <p class="text-sm text-gray-400">© Saabtehtud OÜ {{ date('Y') }}</p>
                 </div>
-
-                
                 <div>
                     <h3 class="text-lg font-bold mb-4">Lingid</h3>
                     <ul class="space-y-2">
                         <li><a href="/" class="text-sm text-gray-400 hover:text-yellow-400 transition duration-300">Avaleht</a></li>
                         <li><a href="{{ route('services') }}" class="text-sm text-gray-400 hover:text-yellow-400 transition duration-300">Teenused</a></li>
-                        <li><a href="/about" class="text-sm text-gray-400 hover:text-yellow-400 transition duration-300">Meist</a></li>
                         <li><a href="{{ route('contact') }}" class="text-sm text-gray-400 hover:text-yellow-400 transition duration-300">Kontakt</a></li>
-                        <li><a href="/privacy-policy" class="text-sm text-gray-400 hover:text-yellow-400 transition duration-300">Privaatsuspoliitika</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
 
-    
     <script>
         var map = L.map('map').setView([58.9431, 23.5408], 13); 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
-    L.marker([58.9431, 23.5408]).addTo(map) 
-        .bindPopup('Saabtehtud OÜ Location in Haapsalu')
-        .openPopup();
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+        L.marker([58.9431, 23.5408]).addTo(map) 
+            .bindPopup('Saabtehtud OÜ Location in Haapsalu')
+            .openPopup();
     </script>
 </body>
-
 </html>
