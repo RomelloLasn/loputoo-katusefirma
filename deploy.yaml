@@ -2,7 +2,7 @@ import:
   - recipe/laravel.php
 
 config:
-  repository: 'git@github.com:RomelloLasn/loputoo-katusefirma.git'
+  repository: 'https://github.com/RomelloLasn/loputoo-katusefirma.git'
   keep_releases: 2
 
 hosts:
