@@ -4,6 +4,10 @@ import:
 config:
   repository: 'git@github.com:RomelloLasn/loputoo-katusefirma.git'
   keep_releases: 2
+  shared_files:
+    - database/database.sqlite
+  shared_dirs:
+    - storage
 
 hosts:
   stage:
