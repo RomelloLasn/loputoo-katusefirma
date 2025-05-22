@@ -25,10 +25,10 @@ tasks:
     - 'deploy:prepare'
     - 'deploy:vendors'
     - 'artisan:storage:link'
-    - 'artisan:optimize:clear'
+    
     # - 'artisan:optimize'
     - 'deploy:publish'
-    - 'artisan:migrate'
+    
 after:
   deploy:failed: deploy:unlock
 
